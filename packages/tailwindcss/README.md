@@ -1,160 +1,109 @@
-# TSDX React User Guide
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/rjsf-team/react-jsonschema-form">
+    <img src="./react-tailwindcss-logo.png" alt="Logo" width="140" height="120">
+  </a>
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+  <h3 align="center">@rjsf/tailwindcss</h3>
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+  <p align="center">
+  tailwindcss theme, fields and widgets for <a href="https://github.com/mozilla-services/react-jsonschema-form/"><code>react-jsonschema-form</code></a>.
+    <br />
+    <a href="https://react-jsonschema-form.readthedocs.io/en/latest/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+   <a href="https://rjsf-team.github.io/react-jsonschema-form/">View Playground</a>
+    ·
+    <a href="https://github.com/rjsf-team/react-jsonschema-form/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/rjsf-team/react-jsonschema-form/issues">Request Feature</a>
+  </p>
+</p>
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+<!-- TABLE OF CONTENTS -->
 
-## Commands
+## Table of Contents
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+- [About The Project](#about-the-project)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
-The recommended workflow is to run TSDX in one terminal:
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+Exports `tailwindcss` theme, fields and widgets for `react-jsonschema-form`.
+
+### Built With
+
+- [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form/)
+- [tailwindcss](https://gettailwindcss.com/docs/4.0/)
+- [Typescript](https://www.typescriptlang.org/)
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Prerequisites
+
+- `react-tailwindcss >= 1.0.1`
+- `@rjsf/core >= 2.2.0`
 
 ```bash
-npm start # or yarn start
+yarn add react-tailwindcss @rjsf/core
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
-
-Then run the example inside another:
+### Installation
 
 ```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+yarn add @rjsf/tailwindcss
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
-
-To do a one-off build, use `npm run build` or `yarn build`.
-
-To run tests, use `npm test` or `yarn test`.
-
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle analysis
-
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
+## Usage
 
 ```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
+import Form from "@rjsf/tailwindcss";
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+or
 
-## Module Formats
+```js
+import { withTheme } from "@rjsf/core";
+import { Theme as tailwindcssTheme } from "@rjsf/tailwindcss";
 
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Deploying the Example Playground
-
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
+const Form = withTheme(tailwindcssTheme);
 ```
 
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
+<!-- CONTRIBUTING -->
 
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
+## Contributing
 
-## Named Exports
+Read our [contributors' guide](https://react-jsonschema-form.readthedocs.io/en/latest/contributing/) to get started.
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+<!-- CONTACT -->
 
-## Including Styles
+## Contact
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+rjsf team: [https://github.com/orgs/rjsf-team/people](https://github.com/orgs/rjsf-team/people)
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+GitHub repository: [https://github.com/rjsf-team/react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)
 
-## Publishing to NPM
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+[build-shield]: https://github.com/rjsf-team/react-jsonschema-form/workflows/CI/badge.svg
+[build-url]: https://github.com/rjsf-team/react-jsonschema-form/actions
+[contributors-shield]: https://img.shields.io/github/contributors/rjsf-team/react-jsonschema-form.svg
+[contributors-url]: https://github.com/rjsf-team/react-jsonschema-form/graphs/contributors
+[license-shield]: https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square
+[license-url]: https://choosealicense.com/licenses/apache-2.0/
+[npm-shield]: https://img.shields.io/npm/v/@rjsf/tailwindcss/latest.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@rjsf/tailwindcss
+[npm-dl-shield]: https://img.shields.io/npm/dm/@rjsf/tailwindcss.svg?style=flat-square
+[npm-dl-url]: https://www.npmjs.com/package/@rjsf/tailwindcss
+[product-screenshot]: https://raw.githubusercontent.com/rjsf-team/react-jsonschema-form/59a8206e148474bea854bbb004f624143fbcbac8/packages/tailwindcss/screenshot.png
